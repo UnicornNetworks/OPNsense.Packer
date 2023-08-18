@@ -15,7 +15,8 @@ variable "boot_steps" {
     ["<left><wait300ms><enter><wait2s><wait1m50s>", "Installing"],
     ["<enter><wait1s>vagrant<enter><wait1s>vagrant<enter><wait20s>","Change root password"],
     ["<down><enter><wait50s>","Complete Install & Reboot"],
-    ["root<enter><wait1s>vagrant<enter><wait1s>5<enter><wait1s>y<enter><wait20s>","Shutdown ..."]
+    // ["root<enter><wait1s>vagrant<enter><wait1s>5<enter><wait1s>y<enter><wait20s>","Shutdown ..."]
+    ["<wait1h","wait indefinitely"]
   ]
 }
 
@@ -55,7 +56,6 @@ variable "iso_url" {
   default = "opnsense.iso"
 }
 
-#------------------------
 # Hardware
 variable "memory" {
   type    = string

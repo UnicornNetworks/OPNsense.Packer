@@ -16,18 +16,14 @@ packer {
 }
 
 source "qemu" "opnsense" {
-  // boot_command      = "${var.boot_command}"
-  boot_steps      = "${var.boot_steps}"
+  boot_key_interval = "${var.boot_key_interval}"
+  boot_steps        = "${var.boot_steps}"
   boot_wait         = "${var.boot_wait}"
   disk_size         = "${var.disk_size}"
-  // guest_additions_mode = "disable"
-  // guest_os_type        = "FreeBSD_64"
   headless          = "${var.headless}"
   http_directory    = "http"
   iso_checksum      = "${var.iso_sha256_checksum}"
-  // iso_checksum_type    = "sha256"
   iso_urls          = ["${path.root}/../iso/${var.iso_url}"]
-  // keep_registered      = false
   output_directory  = "output/qemu"
   shutdown_timeout  = "1m30s"     // post_shutdown_delay
   shutdown_command  = "shutdown -p now"
@@ -47,8 +43,6 @@ source "qemu" "opnsense" {
   accelerator       = "${var.accelerator}"
   machine_type      = "${var.qemu_machine_type}"
 
-  //* Boot
-  boot_key_interval = "${var.boot_key_interval}"
 }
 
 build {
