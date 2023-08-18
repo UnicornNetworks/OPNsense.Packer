@@ -12,6 +12,7 @@ cd -
 echo "**.iso.bz2" >.gitignore
 echo "**/opnsense.iso" >>.gitignore
 echo "**/output" >>.gitignore
+echo "**/builds" >>.gitignore
 }
 
 build(){
