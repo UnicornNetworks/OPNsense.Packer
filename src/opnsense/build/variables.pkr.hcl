@@ -13,10 +13,10 @@ variable "boot_steps" {
     ["installer<enter><wait500ms>opnsense<enter><wait2s>", "Login live iso"],
     ["<enter><wait2s><enter><wait2s><enter><wait2s>", "accept defaults"],
     ["<left><wait300ms><enter><wait2s><wait1m50s>", "Installing"],
-    ["<enter><wait1s>vagrant<enter><wait1s>vagrant<enter><wait20s>","Change root password"],
-    ["<down><enter><wait50s>","Complete Install & Reboot"],
-    // ["root<enter><wait1s>vagrant<enter><wait1s>5<enter><wait1s>y<enter><wait20s>","Shutdown ..."]
-    ["<wait1h","wait indefinitely"]
+    // ["<enter><wait1s>vagrant<enter><wait1s>vagrant<enter><wait20s>","Change root password"],
+    ["<down><enter><wait50s>","Finish & Reboot"],
+    ["root<enter><wait1s>vagrant<enter><wait1s>5<enter><wait1s>y<enter><wait20s>","Shutdown ..."]
+    // ["<wait1h","wait indefinitely"]
   ]
 }
 
