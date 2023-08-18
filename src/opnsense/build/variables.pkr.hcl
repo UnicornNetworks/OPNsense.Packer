@@ -13,11 +13,15 @@ variable "boot_steps" {
     ["installer<enter><wait500ms>opnsense<enter><wait2s>", "Login live iso"],
     ["<enter><wait2s><enter><wait2s><enter><wait2s>", "accept defaults"],
     ["<left><wait300ms><enter><wait2s><wait1m50s>", "Installing"],
-    // ["<enter><wait1s>vagrant<enter><wait1s>vagrant<enter><wait20s>","Change root password"],
-    ["<down><enter><wait50s>","Finish & Reboot"],
-    ["root<enter><wait1s>opnsense<enter><wait2s>5<enter><wait1s>y<enter><wait30s>","Shutdown ..."]
-    // ["<wait1h","wait indefinitely"]
+    ["<down><enter><wait50s>","Complete install"],
+    ["root<enter>opnsense<enter><wait1s>","Login"],
+    ["8<enter><wait5s>", "8) Shell"],
+    ["<wait1h","wait indefinitely"]
+    // ["dhclient vtnet0<enter><wait10>", "DHCP"]
   ]
+  //*Not used
+  // ["<enter><wait1s>vagrant<enter><wait1s>vagrant<enter><wait20s>","Change root password"],
+  // ["root<enter><wait1s>opnsense<enter><wait2s>5<enter><wait1s>y<enter><wait30s>","Login & Shutdown ..."]
 }
 
 #------------------------
