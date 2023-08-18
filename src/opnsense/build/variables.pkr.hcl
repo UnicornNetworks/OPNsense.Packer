@@ -15,7 +15,7 @@ variable "boot_steps" {
     ["<left><wait300ms><enter><wait2s><wait1m50s>", "Installing"],
     ["<enter><wait1s>vagrant<enter><wait1s>vagrant<enter><wait20s>","Change root password"],
     ["<down><enter><wait50s>","Complete Install & Reboot"],
-    ["<wait1h>","test"]
+    ["root<enter><wait1s>vagrant<enter><wait1s>5<enter><wait1s>y<enter><wait20s>","Shutdown ..."]
   ]
 }
 
@@ -62,7 +62,7 @@ variable "iso_sha256_checksum" {
 }
 variable "iso_url" {
   type    = string
-  default = "./opnsense.iso"
+  default = "${path.root}/../iso/opnsense.iso"
 }
 
 #------------------------
