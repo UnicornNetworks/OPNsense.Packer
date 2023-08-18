@@ -26,7 +26,7 @@ source "qemu" "opnsense" {
   http_directory    = "http"
   iso_checksum      = "${var.iso_sha256_checksum}"
   // iso_checksum_type    = "sha256"
-  iso_urls          = ["${var.iso_url}"]
+  iso_urls          = ["${path.root}/../iso/${var.iso_url}"]
   // keep_registered      = false
   output_directory  = "output/qemu"
   shutdown_timeout  = "1m30s"     // post_shutdown_delay

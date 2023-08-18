@@ -45,16 +45,6 @@ variable "headless" {
   default = "false"
 }
 
-# Fedora (test)
-// variable "iso_sha256_checksum" {
-//   type    = string
-//   default = "sha256:984e65fd81fe62dcc1ef2ebc0cfda1ca1659221e5e2fb87cf715badd0a047f00"
-// }
-// variable "iso_url" {
-//   type    = string
-//   default = "./Fedora.iso"
-// }
-
 # opnsense.iso
 variable "iso_sha256_checksum" {
   type    = string
@@ -62,7 +52,7 @@ variable "iso_sha256_checksum" {
 }
 variable "iso_url" {
   type    = string
-  default = "${path.root}/../iso/opnsense.iso"
+  default = "opnsense.iso"
 }
 
 #------------------------
