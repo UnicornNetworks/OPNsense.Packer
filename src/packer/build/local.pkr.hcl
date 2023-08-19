@@ -49,10 +49,9 @@ local "default_network_backend" {
 
 
 // Network Bridge
-// https://blog.christophersmart.com/2016/08/31/configuring-qemu-bridge-helper-after-access-denied-by-acl-file-error/
+// https://www.tecmint.com/create-network-bridge-in-ubuntu/
 local "qemuargs" {
   expression = [
-    // ["-netdev", "bridge,br=${var.bridge_interface},id=net0"],
     ["-device", "${local.default_network_virtual}"],
     ["-netdev", "${local.default_network_backend}"],
     ["-netdev", "bridge,br=${var.bridge_interface},id=net1"],
