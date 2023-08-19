@@ -21,7 +21,6 @@ build {
   provisioner "shell" {
     execute_command = "chmod +x {{ .Path }}; /bin/sh -c '{{ .Vars }} {{ .Path }}'"
     scripts         = ["scripts/base.sh"]
-    keep_input_artifact  = true
   }
 
   # Convert machines to vagrant boxes

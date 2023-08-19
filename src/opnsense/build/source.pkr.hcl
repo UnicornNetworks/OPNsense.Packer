@@ -16,6 +16,7 @@ source "qemu" "opnsense" {
   ssh_timeout       = "30m"
   vm_name           = "opnsense"
   net_device        = "virtio-net"
+  net_bridge        = "virbr0"
   disk_interface    = "virtio"
   //* Hardware
   memory            = "${var.memory}"
@@ -27,6 +28,5 @@ source "qemu" "opnsense" {
   machine_type      = "${var.qemu_machine_type}"
 
   //* extra Network
-  qemuargs          = "${local.wan_network}"
-
+  // qemuargs          = "${local.network_interfaces}"
 }
