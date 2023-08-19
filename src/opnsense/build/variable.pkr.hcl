@@ -92,5 +92,5 @@ variable "os_arch" {
 # Network
 variable "bridge_interface" {
   type    = string
-  default = "virbr0"
+  default = "br0"
 }

@@ -5,7 +5,7 @@ local "curl_command" {
 local "boot_steps" {
   expression = [
     //* Debug
-    // ["root<enter>opnsense<enter><wait3s>"],
+    ["root<enter>opnsense<enter><wait1s>"],
     ["<wait1h>","wait indefinitely"],
 
     //* Start
@@ -26,18 +26,27 @@ local "boot_steps" {
 //*Not used
 // ["root<enter><wait1s>opnsense<enter><wait2s>5<enter><wait1s>y<enter><wait30s>","Login & Shutdown ..."]
 
-local "default_network" {
+local "default_network_virtual" {
   expression = "virtio-net,netdev=user.0"
+  //"-device", "virtio-net,netdev=user.0"
 }
+
+local "default_network_backend" {
+  expression = "user,id=user.0,hostfwd=tcp::3107-:22"
+  //"-netdev", "user,id=user.0,hostfwd=tcp::3107-:22"
+}
+
 
 // Network Bridge
 // https://blog.christophersmart.com/2016/08/31/configuring-qemu-bridge-helper-after-access-denied-by-acl-file-error/
 local "qemuargs" {
   expression = [
-    // ["-cpu", "host"],
-    // LAN
-    ["-device", "${local.default_network}"],
-    ["-netdev", "bridge,br=${var.bridge_interface},id=net0"],
-    ["-device", "virtio-net-pci,netdev=net0"]
+    // ["-netdev", "bridge,br=${var.bridge_interface},id=net0"],
+    ["-device", "${local.default_network_virtual}"],
+    ["-netdev", "${local.default_network_backend}"],
+    ["-netdev", "bridge,br=${var.bridge_interface},id=net1"],
+    ["-device", "virtio-net,netdev=net1"]
   ]
 }
+
+// ["-device", "virtio-net-pci,netdev=net1"]
