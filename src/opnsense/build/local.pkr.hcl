@@ -21,16 +21,21 @@ local "boot_steps" {
 }
 */
 
+//*Not used
+// ["root<enter><wait1s>opnsense<enter><wait2s>5<enter><wait1s>y<enter><wait30s>","Login & Shutdown ..."]
+
+
+// /*
 local "boot_steps" {
+  // Debug
   expression = [
-    //* Debug
-    ["root<enter><wait1s>opnsense<enter><wait1s>"],
+    ["root<enter><wait1s>opnsense<enter><wait1s>", "Login"],
+    ["8<enter>", "8) Shell"],
     ["<wait1h>","wait indefinitely"],
   ]
 }
+// */
 
-//*Not used
-// ["root<enter><wait1s>opnsense<enter><wait2s>5<enter><wait1s>y<enter><wait30s>","Login & Shutdown ..."]
 
 local "default_network_virtual" {
   expression = "virtio-net,netdev=user.0"
@@ -54,5 +59,3 @@ local "qemuargs" {
     ["-device", "virtio-net,netdev=net1"]
   ]
 }
-
-// ["-device", "virtio-net-pci,netdev=net1"]
