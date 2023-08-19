@@ -16,7 +16,7 @@ local "boot_steps" {
     // ["${local.curl_config}<wait><enter>", "Fetch config file"],
     ["echo 'PasswordAuthentication yes' >> /usr/local/etc/ssh/sshd_config<enter>", "enable PasswordAuthentication"],
     ["service openssh onestart<enter><wait1>", "start SSHD service"],
-    ["echo 'vagrant' | pw useradd -n vagrant -s /bin/sh -m -g admins -d /home/vagrant -h -<enter><wait1s>", "Add Vagrant User to bypass CLI menu"],
+    // ["echo 'vagrant' | pw useradd -n vagrant -s /bin/sh -m -g admins -d /home/vagrant -h -<enter><wait1s>", "Add Vagrant User to bypass CLI menu"],
     // ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"],
     ["<wait1h>","wait indefinitely"],
 
