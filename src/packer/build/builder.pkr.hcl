@@ -19,7 +19,14 @@ build {
   sources = ["source.qemu.opnsense"]
 
   provisioner "shell" {
-      inline = ["whoami"]
+    // Adapted from: chef/bento  (see readme.md in /scripts)
+    environment_vars = [
+      "HOME_DIR=/home/${var.user}",
+    ]
+    scripts = [
+      "${path.root}/scripts/_common/vagrant.sh",
+    ]
+    // execute_command = "echo 'vagrant' | {{.Vars}} su -m root -c 'sh -eux {{.Path}}'"
   }
 
   # Convert machines to vagrant boxes
