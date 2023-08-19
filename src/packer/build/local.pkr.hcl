@@ -18,14 +18,15 @@ local "boot_steps" {
     ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"],
     ["<wait45s>","Wait for SSH"],
 
-    // Login
+    // Debug
+    // .Login()
     ["<wait1m>", "Wait for boot"],
     ["root<enter><wait1s>opnsense<enter><wait1s>", "Login"],
     ["8<enter>", "8) Shell"],
-
-    // Debug
+    // .Pause()
     ["<wait9h>","wait indefinitely"],
-    ["pfctl -d", "Enable Web_GUI & SSH Access over WAN! disables firewall"]
+    // .DisableFirewall()
+    // ["pfctl -d", "Enable Web_GUI & SSH Access over WAN! disables firewall"]
   ]
 }
 
