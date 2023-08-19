@@ -19,7 +19,7 @@ local "boot_steps" {
     ["${local.curl_config}<wait><enter>", "Fetch config file"],
     ["echo 'PasswordAuthentication yes' >> /usr/local/etc/ssh/sshd_config<enter>", "enable PasswordAuthentication"],
     ["service openssh onestart<enter><wait1>", "start SSHD service"],
-    ["${local.add_to_sudo}", "Add user to Sudo"]
+    ["${local.add_to_sudo}", "Add user to Sudo"],
     ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"],
     ["<wait45s>","Wait for SSH"],
 
@@ -31,9 +31,6 @@ local "boot_steps" {
     
     // .Pause()
     ["<wait9h>","wait indefinitely"],
-
-    // .DisableFirewall()
-    // ["pfctl -d", "Enable Web_GUI & SSH Access over WAN! disables firewall"]
   ]
 }
 
