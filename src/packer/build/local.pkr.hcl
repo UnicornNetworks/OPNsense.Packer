@@ -57,10 +57,11 @@ local "default_network_backend" {
 // https://www.tecmint.com/create-network-bridge-in-ubuntu/
 local "qemuargs" {
   expression = [
-    ["-netdev", "bridge,br=${var.bridge_interface},id=net1"],
-    ["-device", "virtio-net,netdev=net1"]
-    // Reverse order
-    ["-device", "${local.default_network_virtual}"],
+    // !Reverse order
     ["-netdev", "${local.default_network_backend}"],
+    ["-device", "${local.default_network_virtual}"],
+    // Default Order
+    ["-netdev", "bridge,br=${var.bridge_interface},id=net1"],
+    ["-device", "virtio-net,netdev=net1"],
   ]
 }
