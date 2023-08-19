@@ -1,5 +1,5 @@
 local "slowdown" {
-  expression = var.slowdown ? "<wait${var.slowdown_time}>" : "<wait60s>"
+  expression = var.slowdown ? "<wait${var.slowdown_time}>" : ""
 }
 
 local "pause" {
@@ -21,7 +21,9 @@ local "Debug" {
 
 local "boot_steps" {
   expression = [
-    //* Start
+    // Debug
+    ["echo '${local.slowdown}'", "is Slowdown enabled?"],
+    // Start
     ["installer<enter><wait500ms>opnsense<enter><wait2s>", "Login live iso"],
     ["<enter><wait2s><enter><wait2s><enter><wait2s>", "accept defaults"],
     ["<left><wait300ms><enter><wait1m45s>${local.slowdown}", "Installing"],
@@ -34,7 +36,7 @@ local "boot_steps" {
     ["service openssh onestart<enter><wait1>", "start SSHD service"],
     ["${local.add_to_sudo}", "Add user to Sudo"],
     ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"],
-    local.pause,
+    // local.pause,
   ]
 }
 
