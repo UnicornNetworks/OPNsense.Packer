@@ -8,12 +8,12 @@ source "qemu" "opnsense" {
   iso_checksum      = "${var.iso_sha256_checksum}"
   iso_urls          = ["${path.root}/../iso/${var.iso_url}"]
   output_directory  = "output/qemu"
-  // shutdown_timeout  = "1m30s"     // post_shutdown_delay
-  // shutdown_command  = "shutdown -p now"
+  shutdown_timeout  = "2m"     // post_shutdown_delay
+  shutdown_command  = "shutdown -p now"
 //   communicator      = "none"
   ssh_password      = "opnsense"
   ssh_username      = "root"
-  ssh_timeout       = "20m"
+  ssh_timeout       = "30m"
   vm_name           = "opnsense"
   net_device        = "virtio-net"
   disk_interface    = "virtio"

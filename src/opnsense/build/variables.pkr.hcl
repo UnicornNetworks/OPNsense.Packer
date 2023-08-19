@@ -16,8 +16,12 @@ variable "boot_steps" {
     ["<down><enter><wait50s>","Complete install"],
     ["root<enter>opnsense<enter><wait1s>","Login"],
     ["8<enter><wait5s>", "8) Shell"],
-    ["<wait1h","wait indefinitely"]
-    // ["dhclient vtnet0<enter><wait10>", "DHCP"]
+    ["dhclient vtnet0<enter><wait6>", "DHCP"],
+    ["telnet {{ .HTTPIP }} {{ .HTTPPort }}", "Fetch config.xml"]
+    // 
+    ["echo 'PasswordAuthentication yes' >> /usr/local/etc/ssh/sshd_config<enter>", "enable PasswordAuthentication"],
+    ["service openssh onestart<enter>", "start SSHD service"]
+    ["<wait1h>","wait indefinitely"]
   ]
   //*Not used
   // ["<enter><wait1s>vagrant<enter><wait1s>vagrant<enter><wait20s>","Change root password"],
