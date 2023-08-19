@@ -1,6 +1,6 @@
 source "qemu" "opnsense" {
   boot_key_interval = "${var.boot_key_interval}"
-  boot_steps        = "${var.boot_steps}"
+  boot_steps        = "${local.boot_steps}"
   boot_wait         = "${var.boot_wait}"
   disk_size         = "${var.disk_size}"
   headless          = "${var.headless}"
