@@ -17,7 +17,9 @@ variable "boot_steps" {
     ["root<enter>opnsense<enter><wait1s>","Login"],
     ["8<enter><wait5s>", "8) Shell"],
     ["dhclient vtnet0<enter><wait6>", "DHCP"],
-    ["telnet {{ .HTTPIP }} {{ .HTTPPort }}", "Fetch config.xml"]
+    // 
+    ["telnet {{ .HTTPIP }} {{ .HTTPPort }} | sed '1,/^$/d' >/conf/config.xml<wait><enter>", "Telnet config"],
+    ["GET /{{user `config_file`}} HTTP/1.0<enter><enter>", "Fetch config file"],
     // 
     ["echo 'PasswordAuthentication yes' >> /usr/local/etc/ssh/sshd_config<enter>", "enable PasswordAuthentication"],
     ["service openssh onestart<enter>", "start SSHD service"]
