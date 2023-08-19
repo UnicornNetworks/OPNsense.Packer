@@ -2,7 +2,6 @@ local "curl_config" {
   expression = "curl http://{{ .HTTPIP }}:{{ .HTTPPort }}/config.xml -o /conf/config.xml"
 }
 
-// /*
 local "boot_steps" {
   expression = [
     //* Start
@@ -20,26 +19,15 @@ local "boot_steps" {
     ["<wait45s>","Wait for SSH"],
 
     // Login
-    // ["<wait1m>", "Wait for boot"],
-    // ["root<enter><wait1s>opnsense<enter><wait1s>", "Login"],
-    // ["8<enter>", "8) Shell"]
-  ]
-}
-// */
-
-
-/*
-local "boot_steps" {
-  // Debug
-  expression = [
+    ["<wait1m>", "Wait for boot"],
     ["root<enter><wait1s>opnsense<enter><wait1s>", "Login"],
     ["8<enter>", "8) Shell"],
+
+    // Debug
+    ["<wait9h>","wait indefinitely"],
     ["pfctl -d", "Enable Web_GUI & SSH Access over WAN! disables firewall"]
-    ["<wait1h>","wait indefinitely"],
   ]
 }
-*/
-
 
 local "default_network_virtual" {
   expression = "virtio-net,netdev=user.0"
