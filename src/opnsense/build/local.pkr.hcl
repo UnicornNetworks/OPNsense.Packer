@@ -21,7 +21,6 @@ local "boot_steps" {
     ["service openssh onestart<enter>", "start SSHD service"],
     ["<wait1h>","wait indefinitely"]
   ]
-  // type    = list(list(string))
 }
 
 //*Not used
@@ -31,11 +30,12 @@ local "default_network" {
   expression = "virtio-net,netdev=user.0"
 }
 
-local "network_interfaces" {
+// network_interfaces
+local "qemuargs" {
   expression = [
+    ["-cpu", "host"],
     // LAN
-    ["-device", "${local.default_network}"],
+    ["-device", "${local.default_network}"]
     // WAN
-    ["-netdev", "bridge,id=user.0,br=virbr0"]
   ]
 }
