@@ -1,0 +1,1 @@
+example: `bento/packer_templates/scripts/_common/vagrant.sh`

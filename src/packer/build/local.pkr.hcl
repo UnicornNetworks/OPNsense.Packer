@@ -2,6 +2,10 @@ local "slowdown" {
   expression = var.slowdown ? "<wait${var.slowdown_time}>" : "<wait60s>"
 }
 
+local "pause" {
+  expression = ["<wait9h>","wait indefinitely"]
+}
+
 local "Debug" {
   // Add this to boot_steps to Debug interactively!
   expression = [
@@ -13,14 +17,6 @@ local "Debug" {
     // .Pause()
     ["<wait9h>","wait indefinitely"],
   ]
-}
-
-local "add_to_sudo" {
-  expression = "echo '${var.user} ALL=(ALL) NOPASSWD: ALL' | tee -a /usr/local/etc/sudoers<enter><wait300ms>"
-}
-
-local "curl_config" {
-  expression = "curl http://{{ .HTTPIP }}:{{ .HTTPPort }}/config.xml -o /conf/config.xml"
 }
 
 local "boot_steps" {
@@ -38,7 +34,16 @@ local "boot_steps" {
     ["service openssh onestart<enter><wait1>", "start SSHD service"],
     ["${local.add_to_sudo}", "Add user to Sudo"],
     ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"],
+    local.pause,
   ]
+}
+
+local "add_to_sudo" {
+  expression = "echo '${var.user} ALL=(ALL) NOPASSWD: ALL' | tee -a /usr/local/etc/sudoers<enter><wait300ms>"
+}
+
+local "curl_config" {
+  expression = "curl http://{{ .HTTPIP }}:{{ .HTTPPort }}/config.xml -o /conf/config.xml"
 }
 
 local "default_network_virtual" {
@@ -50,7 +55,6 @@ local "default_network_backend" {
   expression = "user,id=user.0,hostfwd=tcp::3107-:22"
   //"-netdev", "user,id=user.0,hostfwd=tcp::3107-:22"
 }
-
 
 // Network Bridge
 local "qemuargs" {
