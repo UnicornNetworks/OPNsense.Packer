@@ -1,16 +1,21 @@
+variable "Debug" {
+  type    = bool
+  default = false
+  description = "Set to enable Debugging enahancements"
+}
+
+
 variable "slowdown" {
   type    = bool
   default = false
   description = "Wait additional time between 'boot_steps' if running on a HardDrive or there's resource contention."
 }
 
-
 variable "slowdown_time" {
   type    = string
   default = "60s"
   description = "Time to pause for! <wait{this}>. Can be: s = seconds, m = minutes"
 }
-
 
 variable "user" {
   type    = string

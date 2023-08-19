@@ -1,9 +1,5 @@
-local "slowdown_time" {
-  expression = var.slowdown_time ? "<wait${var.slowdown_time}>" : "<wait60s>"
-}
-
 local "slowdown" {
-  expression = var.slowdown ? local.slowdown_time : ""
+  expression = var.slowdown ? "<wait${var.slowdown_time}>" : "<wait60s>"
 }
 
 local "Debug" {
@@ -57,7 +53,6 @@ local "default_network_backend" {
 
 
 // Network Bridge
-// https://www.tecmint.com/create-network-bridge-in-ubuntu/
 local "qemuargs" {
   expression = [
     // LAN

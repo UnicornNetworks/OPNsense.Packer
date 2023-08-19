@@ -7,7 +7,7 @@ source "qemu" "opnsense" {
   http_directory    = "http"
   iso_checksum      = "${var.iso_sha256_checksum}"
   iso_urls          = ["${path.root}/../iso/${var.iso_url}"]
-  output_directory  = "output/qemu"
+  output_directory  = "../output/qemu"
   shutdown_timeout  = "1h"
   shutdown_command  = "sudo shutdown -p now"    // Vagrant user requires `sudo`
   ssh_password      = "${var.password}"

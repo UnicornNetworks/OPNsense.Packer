@@ -25,7 +25,7 @@ build {
   # Convert machines to vagrant boxes
   post-processor "vagrant" {
     compression_level    = 9
-    keep_input_artifact  = true
+    keep_input_artifact  = var.Debug ? true : false
     output               = "${path.root}/../output/${var.os_name}-${var.os_version}-${var.os_arch}.{{ .Provider }}.box"
     vagrantfile_template = "${path.root}/vagrant/Vagrantfile"
   }
