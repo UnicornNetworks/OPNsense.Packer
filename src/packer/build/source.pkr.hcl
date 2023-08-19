@@ -8,7 +8,7 @@ source "qemu" "opnsense" {
   iso_checksum      = "${var.iso_sha256_checksum}"
   iso_urls          = ["${path.root}/../iso/${var.iso_url}"]
   output_directory  = "output/qemu"
-  shutdown_timeout  = "2m"     // post_shutdown_delay
+  shutdown_timeout  = "2h"     // post_shutdown_delay
   shutdown_command  = "shutdown -p now"
   ssh_password      = "vagrant"
   ssh_username      = "vagrant"
@@ -28,5 +28,6 @@ source "qemu" "opnsense" {
   qemuargs          = "${local.qemuargs}"
   //* SSh
   ssh_host          = "10.0.1.143"
+  skip_nat_mapping  = true
   // ssh_port          = 22
 }

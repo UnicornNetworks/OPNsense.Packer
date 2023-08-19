@@ -19,8 +19,7 @@ build {
   sources = ["source.qemu.opnsense"]
 
   provisioner "shell" {
-    execute_command = "chmod +x {{ .Path }}; /bin/sh -c '{{ .Vars }} {{ .Path }}'"
-    scripts         = ["scripts/base.sh"]
+      inline = ["whoami"]
   }
 
   # Convert machines to vagrant boxes
