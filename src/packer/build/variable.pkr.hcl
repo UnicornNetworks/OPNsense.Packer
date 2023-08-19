@@ -1,6 +1,6 @@
 variable "Debug" {
   type    = bool
-  default = false
+  default = env("PACKER_LOG") ? true : false
   description = "Set to enable Debugging enahancements"
 }
 
