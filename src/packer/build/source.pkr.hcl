@@ -12,12 +12,10 @@ source "qemu" "opnsense" {
   shutdown_command  = "shutdown -p now"
   ssh_password      = "opnsense"
   ssh_username      = "root"
-  ssh_timeout       = "30m"
+  ssh_timeout       = "2h"
   vm_name           = "opnsense"
   net_device        = "virtio-net"
-  // net_bridge        = "virbr0"
   disk_interface    = "virtio"
-  //* Hardware
   memory            = "${var.memory}"
   cpus              = "2"
 
