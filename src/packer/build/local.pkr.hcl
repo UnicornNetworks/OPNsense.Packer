@@ -1,8 +1,8 @@
-local "curl_command" {
+local "curl_config" {
   expression = "curl http://{{ .HTTPIP }}:{{ .HTTPPort }}/config.xml -o /conf/config.xml"
 }
 
-/*
+// /*
 local "boot_steps" {
   expression = [
     //* Start
@@ -13,19 +13,18 @@ local "boot_steps" {
     ["root<enter>opnsense<enter><wait1s>","Login"],
     ["8<enter><wait3s>", "8) Shell"],
     ["dhclient vtnet0<enter><wait3>", "DHCP"],
-    ["${local.curl_command}<wait><enter>", "Fetch config file"],
+    ["${local.curl_config}<wait><enter>", "Fetch config file"],
     ["echo 'PasswordAuthentication yes' >> /usr/local/etc/ssh/sshd_config<enter>", "enable PasswordAuthentication"],
-    ["service openssh onestart<enter>", "start SSHD service"],
-    ["<wait1h>","wait indefinitely"]
+    ["service openssh onestart<enter>", "start SSHD service"]
   ]
 }
-*/
+// */
 
 //*Not used
 // ["root<enter><wait1s>opnsense<enter><wait2s>5<enter><wait1s>y<enter><wait30s>","Login & Shutdown ..."]
 
 
-// /*
+/*
 local "boot_steps" {
   // Debug
   expression = [
@@ -34,7 +33,7 @@ local "boot_steps" {
     ["<wait1h>","wait indefinitely"],
   ]
 }
-// */
+*/
 
 
 local "default_network_virtual" {
