@@ -13,11 +13,10 @@ local "boot_steps" {
     ["root<enter>opnsense<enter><wait1s>","Login"],
     ["8<enter><wait3s>", "8) Shell"],
     ["dhclient vtnet0<enter><wait3>", "DHCP"],
-    // ["${local.curl_config}<wait><enter>", "Fetch config file"],
+    ["${local.curl_config}<wait><enter>", "Fetch config file"],
     ["echo 'PasswordAuthentication yes' >> /usr/local/etc/ssh/sshd_config<enter>", "enable PasswordAuthentication"],
-    ["service openssh onestart<enter><wait1>", "start SSHD service"],
-    // ["echo 'vagrant' | pw useradd -n vagrant -s /bin/sh -m -g admins -d /home/vagrant -h -<enter><wait1s>", "Add Vagrant User to bypass CLI menu"],
-    // ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"],
+    ["service openssh onestart<enter><wait1>", "start SSHD service"],    
+    ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"],
     ["<wait1h>","wait indefinitely"],
 
     // Login
@@ -35,8 +34,11 @@ local "boot_steps" {
   expression = [
     ["root<enter><wait1s>opnsense<enter><wait1s>", "Login"],
     ["8<enter>", "8) Shell"],
+    ["pfctl -d", "Enable Web_GUI & SSH Access over WAN! disables firewall"]
     ["<wait1h>","wait indefinitely"],
   ]
+  // Doesn't work!
+  // ["echo 'vagrant' | pw useradd -n vagrant -s /bin/sh -m -g admins -d /home/vagrant -h -<enter><wait1s>", "Add Vagrant User to bypass CLI menu"],
 }
 */
 
