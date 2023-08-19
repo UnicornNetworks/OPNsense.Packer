@@ -18,7 +18,6 @@ local "boot_steps" {
     ["service openssh onestart<enter><wait1>", "start SSHD service"],    
     ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"],
     ["<wait45s>","Wait for SSH"],
-    // ["<wait1h>","wait indefinitely"],
 
     // Login
     // ["<wait1m>", "Wait for boot"],
@@ -57,10 +56,10 @@ local "default_network_backend" {
 // https://www.tecmint.com/create-network-bridge-in-ubuntu/
 local "qemuargs" {
   expression = [
-    // !Reverse order
+    // LAN
     ["-netdev", "${local.default_network_backend}"],
     ["-device", "${local.default_network_virtual}"],
-    // Default Order
+    // WAN
     ["-netdev", "bridge,br=${var.bridge_interface},id=net1"],
     ["-device", "virtio-net,netdev=net1"],
   ]

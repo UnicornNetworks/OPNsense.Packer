@@ -27,6 +27,6 @@ source "qemu" "opnsense" {
   //* extra Network
   qemuargs          = "${local.qemuargs}"
   //* SSh
-  ssh_host          = "10.0.2.15"
-  ssh_port          = 22
+  ssh_host          = "10.0.1.143"
+  // ssh_port          = 22
 }
