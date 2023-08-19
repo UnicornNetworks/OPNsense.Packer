@@ -231,6 +231,7 @@
       <authorizedkeys/>
       <otp_seed/>
       <uid>2000</uid>
+      <shell>/bin/sh</shell>
     </user>
     <nextuid>2001</nextuid>
     <nextgid>2000</nextgid>
@@ -426,8 +427,8 @@
   </widgets>
   <revision>
     <username>root@10.0.1.141</username>
-    <time>1692428528.9766</time>
-    <description>user "vagrant" created</description>
+    <time>1692429379.8765</time>
+    <description>user "vagrant" changed</description>
   </revision>
   <OPNsense>
     <IPsec version="1.0.1">
