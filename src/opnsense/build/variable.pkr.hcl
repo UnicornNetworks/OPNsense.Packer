@@ -88,3 +88,9 @@ variable "os_arch" {
   type    = string
   default = "x86_64"
 }
+
+# Network
+variable "bridge_interface" {
+  type    = string
+  default = "virbr0"
+}

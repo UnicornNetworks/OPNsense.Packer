@@ -30,12 +30,14 @@ local "default_network" {
   expression = "virtio-net,netdev=user.0"
 }
 
-// network_interfaces
+// Network Bridge
+// https://blog.christophersmart.com/2016/08/31/configuring-qemu-bridge-helper-after-access-denied-by-acl-file-error/
 local "qemuargs" {
   expression = [
-    ["-cpu", "host"],
+    // ["-cpu", "host"],
     // LAN
-    ["-device", "${local.default_network}"]
-    // WAN
+    ["-device", "${local.default_network}"],
+    ["-netdev", "bridge,br=${var.bridge_interface},id=net0"],
+    ["-device", "virtio-net-pci,netdev=net0"]
   ]
 }
