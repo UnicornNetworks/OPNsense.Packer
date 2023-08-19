@@ -1,3 +1,11 @@
+gitignore(){
+echo "**.iso.bz2" >.gitignore
+echo "**/opnsense.iso" >>.gitignore
+echo "**/output" >>.gitignore
+echo "**/builds" >>.gitignore
+echo "**/crash.log" >>.gitignore
+}
+
 pre(){
 download_url="https://mirror.dns-root.de/opnsense/releases/23.7/OPNsense-23.7-dvd-amd64.iso.bz2"
 
@@ -9,10 +17,7 @@ shasum -a 256 opnsense.iso
 cd -
 
 # ln -sfr iso/opnsense.iso build/
-echo "**.iso.bz2" >.gitignore
-echo "**/opnsense.iso" >>.gitignore
-echo "**/output" >>.gitignore
-echo "**/builds" >>.gitignore
+gitignore
 }
 
 into(){
