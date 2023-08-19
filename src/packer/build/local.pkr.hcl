@@ -1,3 +1,24 @@
+local "slowdown_time" {
+  expression = var.slowdown_time ? "<wait${var.slowdown_time}>" : "<wait60s>"
+}
+
+local "slowdown" {
+  expression = var.slowdown ? local.slowdown_time : ""
+}
+
+local "Debug" {
+  // Add this to boot_steps to Debug interactively!
+  expression = [
+    // .Login()
+    ["<wait1m>", "Wait for boot"],
+    ["root<enter><wait1s>opnsense<enter><wait1s>", "Login"],
+    ["8<enter>", "8) Shell"],
+    
+    // .Pause()
+    ["<wait9h>","wait indefinitely"],
+  ]
+}
+
 local "add_to_sudo" {
   expression = "echo '${var.user} ALL=(ALL) NOPASSWD: ALL' | tee -a /usr/local/etc/sudoers<enter><wait300ms>"
 }
@@ -11,8 +32,8 @@ local "boot_steps" {
     //* Start
     ["installer<enter><wait500ms>opnsense<enter><wait2s>", "Login live iso"],
     ["<enter><wait2s><enter><wait2s><enter><wait2s>", "accept defaults"],
-    ["<left><wait300ms><enter><wait2s><wait1m40s>", "Installing"],
-    ["<down><enter><wait50s>","Complete install"],
+    ["<left><wait300ms><enter><wait1m45s>${local.slowdown}", "Installing"],
+    ["<down><enter><wait50s>${local.slowdown}","Complete install"],
     ["root<enter>opnsense<enter><wait1s>","Login"],
     ["8<enter><wait3s>", "8) Shell"],
     ["dhclient vtnet0<enter><wait3>", "DHCP"],
@@ -21,17 +42,6 @@ local "boot_steps" {
     ["service openssh onestart<enter><wait1>", "start SSHD service"],
     ["${local.add_to_sudo}", "Add user to Sudo"],
     ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"],
-    ["<wait30s>","Wait for SSH"],
-
-    /* Debug
-    // .Login()
-    ["<wait1m>", "Wait for boot"],
-    ["root<enter><wait1s>opnsense<enter><wait1s>", "Login"],
-    ["8<enter>", "8) Shell"],
-    
-    // .Pause()
-    ["<wait9h>","wait indefinitely"],
-    */
   ]
 }
 
