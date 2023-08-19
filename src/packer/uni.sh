@@ -1,39 +1,39 @@
 gitignore(){
-echo "**.iso.bz2" >.gitignore
-echo "**/opnsense.iso" >>.gitignore
-echo "**/output" >>.gitignore
-echo "**/builds" >>.gitignore
-echo "**/crash.log" >>.gitignore
+    echo "**.iso.bz2" >.gitignore
+    echo "**/opnsense.iso" >>.gitignore
+    echo "**/output" >>.gitignore
+    echo "**/builds" >>.gitignore
+    echo "**/crash.log" >>.gitignore
 }
 
 pre(){
-download_url="https://mirror.dns-root.de/opnsense/releases/23.7/OPNsense-23.7-dvd-amd64.iso.bz2"
+    download_url="https://mirror.dns-root.de/opnsense/releases/23.7/OPNsense-23.7-dvd-amd64.iso.bz2"
 
-mkdir -p iso; cd iso
-wget -c $download_url
-bunzip2 --keep OPNsense-23.7-dvd-amd64.iso.bz2
-mv OPNsense-23.7-dvd-amd64.iso opnsense.iso
-shasum -a 256 opnsense.iso
-cd -
+    mkdir -p iso; cd iso
+    wget -c $download_url
+    bunzip2 --keep OPNsense-23.7-dvd-amd64.iso.bz2
+    mv OPNsense-23.7-dvd-amd64.iso opnsense.iso
+    shasum -a 256 opnsense.iso
+    cd -
 
-# ln -sfr iso/opnsense.iso build/
-gitignore
+    # ln -sfr iso/opnsense.iso build/
+    gitignore
 }
 
 into(){
-cd build
+    cd build
 }
 
 build(){
-into
-packer build .
+    into
+    packer build .
 }
 
 debug(){
-# Show qemu command
-# https://developer.hashicorp.com/packer/plugins/builders/qemu#qemuargs
-into
-PACKER_LOG=1 packer build .
+    # Show qemu command
+    # https://developer.hashicorp.com/packer/plugins/builders/qemu#qemuargs
+    into
+    PACKER_LOG=1 PACKER_LOG_PATH="../output/packerlog.txt" packer build .
 }
 
 pre
