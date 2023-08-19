@@ -8,7 +8,7 @@ local "boot_steps" {
     //* Start
     ["installer<enter><wait500ms>opnsense<enter><wait2s>", "Login live iso"],
     ["<enter><wait2s><enter><wait2s><enter><wait2s>", "accept defaults"],
-    ["<left><wait300ms><enter><wait2s><wait1m50s>", "Installing"],
+    ["<left><wait300ms><enter><wait2s><wait1m40s>", "Installing"],
     ["<down><enter><wait50s>","Complete install"],
     ["root<enter>opnsense<enter><wait1s>","Login"],
     ["8<enter><wait3s>", "8) Shell"],
@@ -16,13 +16,17 @@ local "boot_steps" {
     // ["${local.curl_config}<wait><enter>", "Fetch config file"],
     ["echo 'PasswordAuthentication yes' >> /usr/local/etc/ssh/sshd_config<enter>", "enable PasswordAuthentication"],
     ["service openssh onestart<enter><wait1>", "start SSHD service"],
-    ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"]
+    ["echo 'vagrant' | pw useradd -n vagrant -s /bin/sh -m -g admins -d /home/vagrant -h -<enter><wait1s>", "Add Vagrant User to bypass CLI menu"],
+    // ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"],
+    ["<wait1h>","wait indefinitely"],
+
+    // Login
+    // ["<wait1m>", "Wait for boot"],
+    // ["root<enter><wait1s>opnsense<enter><wait1s>", "Login"],
+    // ["8<enter>", "8) Shell"]
   ]
 }
 // */
-
-//*Not used
-// ["root<enter><wait1s>opnsense<enter><wait2s>5<enter><wait1s>y<enter><wait30s>","Login & Shutdown ..."]
 
 
 /*

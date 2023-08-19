@@ -10,8 +10,8 @@ source "qemu" "opnsense" {
   output_directory  = "output/qemu"
   shutdown_timeout  = "2m"     // post_shutdown_delay
   shutdown_command  = "shutdown -p now"
-  ssh_password      = "opnsense"
-  ssh_username      = "root"
+  ssh_password      = "vagrant"
+  ssh_username      = "vagrant"
   ssh_timeout       = "2h"
   vm_name           = "opnsense"
   net_device        = "virtio-net"
@@ -27,5 +27,5 @@ source "qemu" "opnsense" {
   //* extra Network
   qemuargs          = "${local.qemuargs}"
   //* SSh
-  ssh_host          = "10.2.0.1"
+  // ssh_host          = "10.2.0.1"
 }

@@ -1,12 +1,3 @@
-variable "boot_command" {
-  type    = list(string)
-  default = [
-    // Login live iso
-    "installer<enter><wait500ms>opnsense<enter><wait2s>",
-    "<wait1h>"
-  ]
-}
-
 variable "boot_key_interval" {
   type    = string
   default = "20ms"
