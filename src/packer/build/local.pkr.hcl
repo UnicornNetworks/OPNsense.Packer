@@ -17,7 +17,7 @@ local "boot_steps" {
     ["echo 'PasswordAuthentication yes' >> /usr/local/etc/ssh/sshd_config<enter>", "enable PasswordAuthentication"],
     ["service openssh onestart<enter><wait1>", "start SSHD service"],    
     ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"],
-    ["<wait1m>","Wait for SSH"],
+    ["<wait45s>","Wait for SSH"],
     // ["<wait1h>","wait indefinitely"],
 
     // Login
