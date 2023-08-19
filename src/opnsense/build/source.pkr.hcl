@@ -26,4 +26,7 @@ source "qemu" "opnsense" {
   accelerator       = "${var.accelerator}"
   machine_type      = "${var.qemu_machine_type}"
 
+  //* extra Network
+  qemuargs          = "${local.wan_network}"
+
 }

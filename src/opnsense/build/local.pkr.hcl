@@ -23,3 +23,7 @@ local "boot_steps" {
 
 //*Not used
 // ["root<enter><wait1s>opnsense<enter><wait2s>5<enter><wait1s>y<enter><wait30s>","Login & Shutdown ..."]
+
+local "wan_network" {
+
+}

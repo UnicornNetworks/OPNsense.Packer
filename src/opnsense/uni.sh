@@ -15,9 +15,19 @@ echo "**/output" >>.gitignore
 echo "**/builds" >>.gitignore
 }
 
-build(){
+into(){
 cd build
+}
+
+build(){
+into
 packer build .
 }
 
+debug(){
+into
+PACKER_LOG=1 packer build .
+}
+
 pre
+debug
