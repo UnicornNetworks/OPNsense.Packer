@@ -1,5 +1,5 @@
 local "add_to_sudo" {
-  expression = "echo '${var.user} ALL=(ALL) NOPASSWD: ALL' | tee -a /usr/local/etc/sudoers"
+  expression = "echo '${var.user} ALL=(ALL) NOPASSWD: ALL' | tee -a /usr/local/etc/sudoers<enter><wait300ms>"
 }
 
 local "curl_config" {
@@ -21,9 +21,9 @@ local "boot_steps" {
     ["service openssh onestart<enter><wait1>", "start SSHD service"],
     ["${local.add_to_sudo}", "Add user to Sudo"],
     ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"],
-    ["<wait45s>","Wait for SSH"],
+    ["<wait30s>","Wait for SSH"],
 
-    // Debug
+    /* Debug
     // .Login()
     ["<wait1m>", "Wait for boot"],
     ["root<enter><wait1s>opnsense<enter><wait1s>", "Login"],
@@ -31,6 +31,7 @@ local "boot_steps" {
     
     // .Pause()
     ["<wait9h>","wait indefinitely"],
+    */
   ]
 }
 
