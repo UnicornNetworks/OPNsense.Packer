@@ -15,7 +15,8 @@ local "boot_steps" {
     ["dhclient vtnet0<enter><wait3>", "DHCP"],
     ["${local.curl_config}<wait><enter>", "Fetch config file"],
     ["echo 'PasswordAuthentication yes' >> /usr/local/etc/ssh/sshd_config<enter>", "enable PasswordAuthentication"],
-    ["service openssh onestart<enter>", "start SSHD service"]
+    ["service openssh onestart<enter><wait1>", "start SSHD service"],
+    ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"]
   ]
 }
 // */

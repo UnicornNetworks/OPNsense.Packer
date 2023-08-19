@@ -10,7 +10,6 @@ source "qemu" "opnsense" {
   output_directory  = "output/qemu"
   shutdown_timeout  = "2m"     // post_shutdown_delay
   shutdown_command  = "shutdown -p now"
-//   communicator      = "none"
   ssh_password      = "opnsense"
   ssh_username      = "root"
   ssh_timeout       = "30m"
@@ -29,4 +28,6 @@ source "qemu" "opnsense" {
 
   //* extra Network
   qemuargs          = "${local.qemuargs}"
+  //* SSh
+  ssh_host          = "10.2.0.1"
 }
