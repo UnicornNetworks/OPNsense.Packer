@@ -25,6 +25,8 @@ packer build .
 }
 
 debug(){
+# Show qemu command
+# https://developer.hashicorp.com/packer/plugins/builders/qemu#qemuargs
 into
 PACKER_LOG=1 packer build .
 }
