@@ -2,12 +2,9 @@ local "curl_command" {
   expression = "curl http://{{ .HTTPIP }}:{{ .HTTPPort }}/config.xml -o /conf/config.xml"
 }
 
+/*
 local "boot_steps" {
   expression = [
-    //* Debug
-    ["root<enter>opnsense<enter><wait1s>"],
-    ["<wait1h>","wait indefinitely"],
-
     //* Start
     ["installer<enter><wait500ms>opnsense<enter><wait2s>", "Login live iso"],
     ["<enter><wait2s><enter><wait2s><enter><wait2s>", "accept defaults"],
@@ -20,6 +17,15 @@ local "boot_steps" {
     ["echo 'PasswordAuthentication yes' >> /usr/local/etc/ssh/sshd_config<enter>", "enable PasswordAuthentication"],
     ["service openssh onestart<enter>", "start SSHD service"],
     ["<wait1h>","wait indefinitely"]
+  ]
+}
+*/
+
+local "boot_steps" {
+  expression = [
+    //* Debug
+    ["root<enter><wait1s>opnsense<enter><wait1s>"],
+    ["<wait1h>","wait indefinitely"],
   ]
 }
 
