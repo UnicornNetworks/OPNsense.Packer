@@ -1,3 +1,13 @@
+variable "user" {
+  type    = string
+  default = "vagrant"
+}
+
+variable "password" {
+  type    = string
+  default = "vagrant"
+}
+
 variable "boot_key_interval" {
   type    = string
   default = "20ms"

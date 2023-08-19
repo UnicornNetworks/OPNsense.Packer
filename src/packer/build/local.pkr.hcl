@@ -1,3 +1,7 @@
+local "add_to_sudo" {
+  expression = "echo '${var.user} ALL=(ALL) NOPASSWD: ALL' | tee -a /usr/local/etc/sudoers"
+}
+
 local "curl_config" {
   expression = "curl http://{{ .HTTPIP }}:{{ .HTTPPort }}/config.xml -o /conf/config.xml"
 }
@@ -14,7 +18,8 @@ local "boot_steps" {
     ["dhclient vtnet0<enter><wait3>", "DHCP"],
     ["${local.curl_config}<wait><enter>", "Fetch config file"],
     ["echo 'PasswordAuthentication yes' >> /usr/local/etc/ssh/sshd_config<enter>", "enable PasswordAuthentication"],
-    ["service openssh onestart<enter><wait1>", "start SSHD service"],    
+    ["service openssh onestart<enter><wait1>", "start SSHD service"],
+    ["${local.add_to_sudo}", "Add user to Sudo"]
     ["exit<enter><wait300ms>6<enter><wait300ms>y<enter>", "Reboot"],
     ["<wait45s>","Wait for SSH"],
 
@@ -23,8 +28,10 @@ local "boot_steps" {
     ["<wait1m>", "Wait for boot"],
     ["root<enter><wait1s>opnsense<enter><wait1s>", "Login"],
     ["8<enter>", "8) Shell"],
+    
     // .Pause()
     ["<wait9h>","wait indefinitely"],
+
     // .DisableFirewall()
     // ["pfctl -d", "Enable Web_GUI & SSH Access over WAN! disables firewall"]
   ]

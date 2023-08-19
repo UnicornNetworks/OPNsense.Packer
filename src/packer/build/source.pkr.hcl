@@ -8,10 +8,10 @@ source "qemu" "opnsense" {
   iso_checksum      = "${var.iso_sha256_checksum}"
   iso_urls          = ["${path.root}/../iso/${var.iso_url}"]
   output_directory  = "output/qemu"
-  shutdown_timeout  = "2h"     // post_shutdown_delay
-  shutdown_command  = "shutdown -p now"
-  ssh_password      = "vagrant"
-  ssh_username      = "vagrant"
+  shutdown_timeout  = "1h"
+  shutdown_command  = "sudo shutdown -p now"    // Vagrant user requires `sudo`
+  ssh_password      = "${var.password}"
+  ssh_username      = "${var.user}"
   ssh_timeout       = "2h"
   vm_name           = "opnsense"
   net_device        = "virtio-net"
@@ -19,15 +19,15 @@ source "qemu" "opnsense" {
   memory            = "${var.memory}"
   cpus              = "2"
 
-  //* KVM Specific
+  // KVM Specific
   format            = "qcow2"
   accelerator       = "${var.accelerator}"
   machine_type      = "${var.qemu_machine_type}"
 
-  //* extra Network
+  // extra Networks
   qemuargs          = "${local.qemuargs}"
-  //* SSh
-  ssh_host          = "10.0.1.143"
+
+  // SSH
+  ssh_host          = "10.0.1.143"    // Todo: Add a 3rd "management" interface, with static IP!
   skip_nat_mapping  = true
-  // ssh_port          = 22
 }
