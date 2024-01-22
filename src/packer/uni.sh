@@ -11,10 +11,15 @@ gitignore(){
 
 pre(){
     download_url="https://mirror.dns-root.de/opnsense/releases/${version}/OPNsense-${version}-dvd-amd64.iso.bz2"
-
-    mkdir -p iso; cd iso
-    wget -c $download_url
-    bunzip2 --keep OPNsense-${version}-dvd-amd64.iso.bz2
+    mkdir -p iso output
+    
+    cd iso
+    if [ ! -f OPNsense-${version}-dvd-amd64.iso.bz2 ]; then
+      wget -c $download_url
+    fi
+    if [ ! -f OPNsense-${version}-dvd-amd64.iso ]; then
+      bunzip2 --keep OPNsense-${version}-dvd-amd64.iso.bz2
+    fi
     mv OPNsense-${version}-dvd-amd64.iso opnsense.iso
     shasum -a 256 opnsense.iso
     cd -

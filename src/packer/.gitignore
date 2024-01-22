@@ -1,4 +1,5 @@
 **.iso.bz2
 **/opnsense.iso
 **/output
+**/builds
 **/crash.log
