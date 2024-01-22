@@ -1,6 +1,3 @@
-# Create network bridge
-https://www.tecmint.com/create-network-bridge-in-ubuntu/
-
 # Fix:
 ## access denied by acl file
 works: https://blog.christophersmart.com/2016/08/31/configuring-qemu-bridge-helper-after-access-denied-by-acl-file-error/
@@ -16,11 +13,12 @@ sudo chmod 640 /etc/qemu/${USER}.conf
 sch: https://www.google.com/search?q=ubuntu+failed+to+create+tun+device%3A+Operation+not+permitted
 
 guide:
+- https://mike42.me/blog/2019-08-how-to-use-the-qemu-bridge-helper-on-debian-10
 - https://help.mystnodes.com/en/articles/8005230-tun-device-errors-and-troubleshooting
 
 discuss:
 - https://unix.stackexchange.com/questions/243382/making-dev-net-tun-available-to-qemu
 
 
-### solution: qemu requires sudo
+### solution: sudo qemu
 This works, but is not ideal.
