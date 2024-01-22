@@ -13,3 +13,6 @@ sudo chmod 640 /etc/qemu/${USER}.conf
 ```
 
 ## tun
+https://unix.stackexchange.com/questions/243382/making-dev-net-tun-available-to-qemu
+
+qemu requires sudo
