@@ -4,6 +4,7 @@
     pkg:
     - openvswitch-switch-dpdk
     - bridge-utils
+    - uml-utilities   # tunctl
   become: true
 
 - name: Template netplan
