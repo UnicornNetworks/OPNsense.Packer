@@ -19,6 +19,14 @@ guide:
 discuss:
 - https://unix.stackexchange.com/questions/243382/making-dev-net-tun-available-to-qemu
 
+### Solution: permissions
+https://mike42.me/blog/2019-08-how-to-use-the-qemu-bridge-helper-on-debian-10
+>"If you do not correctly set this last step, then you will receive the following error when you attempt to connect a VM to the bridge:
+>
+>```
+>Error starting domain: internal error: /usr/lib/qemu/qemu-bridge-helper --use-vnet --br=virbr0 --fd=28: failed to communicate with bridge helper: Transport endpoint is not connected
+>stderr=failed to create tun device: Operation not permitted
+>```
 
 ### solution: sudo qemu
 This works, but is not ideal.
