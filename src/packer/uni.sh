@@ -17,11 +17,11 @@ pre(){
     if [ ! -f OPNsense-${version}-dvd-amd64.iso.bz2 ]; then
       wget -c $download_url
     fi
-    if [ ! -f OPNsense-${version}-dvd-amd64.iso ]; then
+    if [ ! -f opnsense.iso ]; then
       bunzip2 --keep OPNsense-${version}-dvd-amd64.iso.bz2
+      mv OPNsense-${version}-dvd-amd64.iso opnsense.iso
     fi
-    mv OPNsense-${version}-dvd-amd64.iso opnsense.iso
-    shasum -a 256 opnsense.iso
+    sha256sum opnsense.iso
     cd -
 
     # ln -sfr iso/opnsense.iso build/
