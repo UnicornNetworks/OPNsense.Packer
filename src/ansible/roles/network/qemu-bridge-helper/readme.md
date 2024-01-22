@@ -28,5 +28,17 @@ https://mike42.me/blog/2019-08-how-to-use-the-qemu-bridge-helper-on-debian-10
 >stderr=failed to create tun device: Operation not permitted
 >```
 
-### solution: sudo qemu
-This works, but is not ideal.
+### Solution: sudo chmod 0755 /etc/qemu/bridge.conf
+This is the only thing that Worked for me!
+
+contents:
+```
+allow virbr0
+allow br0
+allow all
+```
+
+permissions:
+```
+sudo chmod 0755 /etc/qemu/bridge.conf
+```

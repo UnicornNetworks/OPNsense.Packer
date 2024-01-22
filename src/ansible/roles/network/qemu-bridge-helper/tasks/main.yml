@@ -1,0 +1,7 @@
+- name: Copy bridge.conf
+  ansible.builtin.copy:
+    src: bridge.conf
+    dest: /etc/qemu/bridge.conf
+    owner: root
+    group: root
+    mode: '0744'
