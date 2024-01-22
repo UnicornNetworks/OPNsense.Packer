@@ -1,0 +1,13 @@
+---
+- name: Install OpenVSwitch & bridge-utils
+  ansible.builtin.apt:
+    pkg:
+    - openvswitch-switch-dpdk
+    - bridge-utils
+  become: true
+
+- name: Template netplan
+  ansible.builtin.template:
+    src: netplan/50-cloud-init.yaml.j2
+    dest: /etc/netplan/50-cloud-init.yaml
+  notify: Netplan apply
