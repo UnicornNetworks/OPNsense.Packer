@@ -12,7 +12,15 @@ sudo chown root:${USER} /etc/qemu/${USER}.conf
 sudo chmod 640 /etc/qemu/${USER}.conf
 ```
 
-## tun
-https://unix.stackexchange.com/questions/243382/making-dev-net-tun-available-to-qemu
+## failed to create tun device: Operation not permitted
+sch: https://www.google.com/search?q=ubuntu+failed+to+create+tun+device%3A+Operation+not+permitted
 
-qemu requires sudo
+guide:
+- https://help.mystnodes.com/en/articles/8005230-tun-device-errors-and-troubleshooting
+
+discuss:
+- https://unix.stackexchange.com/questions/243382/making-dev-net-tun-available-to-qemu
+
+
+### solution: qemu requires sudo
+This works, but is not ideal.
