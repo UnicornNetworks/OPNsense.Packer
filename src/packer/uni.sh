@@ -9,8 +9,14 @@ gitignore(){
     echo "**/crash.log" >>.gitignore
 }
 
+plugin(){
+  packer init build/builder.pkr.hcl
+}
+
 pre(){
     download_url="https://mirror.dns-root.de/opnsense/releases/${version}/OPNsense-${version}-dvd-amd64.iso.bz2"
+    
+    plugin
     mkdir -p iso output
     
     cd iso
