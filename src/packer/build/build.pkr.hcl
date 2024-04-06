@@ -16,6 +16,8 @@ packer {
 }
 
 build {
+  name = "simple"
+
   sources = ["source.qemu.opnsense"]
 
   provisioner "shell" {
